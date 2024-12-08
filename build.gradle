@@ -3,7 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.4.0'
     id 'io.spring.dependency-management' version '1.1.6'
     // 추가
-    id 'org.ec4j.editorconfig' version '0.0.3'
+    id 'org.ec4j.editorconfig' version '0.1.0'
     id 'checkstyle'
 }
 
@@ -35,7 +35,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
 }
 
 tasks.named('test') {
@@ -47,16 +47,15 @@ editorconfig {
     excludes = ['build']
 }
 
-check.dependsOn editorconfigCheck // checkstyle이 설정 되어 있을 시, editorconfigCheck 후 checkstyle 진행
-
 checkstyle {
     maxWarnings = 0
     configFile = file("${rootDir}/config/naver-checkstyle-rules.xml")
     configProperties = ["suppressionFile": "${rootDir}/config/naver-checkstyle-suppressions.xml"]
-    toolVersion = "8.42"
+    toolVersion = "9.2.1"
     sourceSets = [sourceSets.main] // for QueryDSL error
 }
 
+check.dependsOn editorconfigCheck // checkstyle이 설정 되어 있을 시, editorconfigCheck 후 checkstyle 진행
 checkstyleMain.source = fileTree('src/main/java') // for QueryDSL error
 
 compileJava.options.encoding = 'UTF-8'
