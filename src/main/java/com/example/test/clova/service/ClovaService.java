@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.test.clova.dto.clova.Role;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -36,7 +35,9 @@ public class ClovaService {
 		Map<String, Object> systemMessageMap = new HashMap<>();
 		systemMessageMap.put("role", "system");
 		systemMessageMap.put("content",
-			"당신은 사용자의 요리를 돕기 위한 어시스턴트입니다. 사용자가 보유한 재료와 원하는 조건을 바탕으로 요리 한 개의 레시피 가이드를 제공해주세요. 답변은 아래의 내용을 포함해야 합니다.\n1. 요리명, 재료, 추가로 필요한 재료, 소요시간, 난이도, 칼로리, 조리과정을 포함\n2. 재료와 소요시간은 구체적인 양과 단계별 조리시간을 제공\n3. 사용자가 보유한 재료에 명시되지 않은 재료는 추가로 필요한 재료에 명시해야 함");
+			"당신은 사용자의 요리를 돕기 위한 어시스턴트입니다. 사용자가 보유한 재료와 원하는 조건을 바탕으로 요리 한 개의 레시피 가이드를 제공해주세요."
+				+ "답변은 아래의 내용을 포함해야 합니다.\n1. 요리명, 재료, 추가로 필요한 재료, 소요시간, 난이도, 칼로리, 조리과정을 포함\n"
+				+ "2. 재료와 소요시간은 구체적인 양과 단계별 조리시간을 제공\n3. 사용자가 보유한 재료에 명시되지 않은 재료는 추가로 필요한 재료에 명시해야 함");
 
 		Map<String, Object> userMessageMap = new HashMap<>();
 		userMessageMap.put("role", "user");
